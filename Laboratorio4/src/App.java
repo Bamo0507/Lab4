@@ -68,30 +68,19 @@ public class App {
                     break;
                 
                 case "3":
-                    char[] valoresPermitidos = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-                    char[] hexadecimal = new char[3];
-                    int resultadoDecimal = 0;
-                    char digito = '1';
-                    for(int i =2; i >= 0; i--){
-                        systemON3 = true;
-                        while(systemON3){
-                            System.out.println("Ingrese el dígito que desea para la " + i + " posición del hexadecimal.");
-                            digito = obtenerCharValido(sc);
-                            if(estaEnArray(digito, valoresPermitidos)){
-                                systemON3 = false;
-                            } else{
-                                System.out.println("El dígito ingresado es inválido");
-                                System.out.println("Este debe ser un número entre 0-9 o una letra de A-F");
-                            }
+                    System.out.println("Ingrese el número hexadecimal (formato de tres dígitos): ");
+                    String inputHex = sc.nextLine();
+                    // Verificamos que la entrada tenga tres caracteres
+                    if (inputHex.length() == 3) {
+                        try {
+                            int decimalResult = Integer.parseInt(inputHex, 16);
+                            System.out.println("El número decimal es: " + decimalResult);
+                        } catch (NumberFormatException e) {
+                            System.out.println("Entrada no válida. Asegúrate de ingresar un número hexadecimal válido.");
                         }
-                        int posicion = i;
-                        hexadecimal[posicion] = digito;
+                    } else {
+                        System.out.println("Entrada no válida. Debe ser un número hexadecimal de tres dígitos.");
                     }
-
-                    String hexadecimalDado = String.valueOf(hexadecimal);
-                    resultadoDecimal = Integer.parseInt(hexadecimalDado, 16);
-                    System.out.println("El número decimal es de " + resultadoDecimal);
-                    System.out.println(disenoA);
                     break;
 
                 case "4":
@@ -115,6 +104,9 @@ public class App {
                     System.out.println("Qué tenga un buen día!!!");
                     systemON = false;
                     break;
+
+                default:   
+                    System.out.println("Selecciona una opción válida.");
             }  
         }
 
